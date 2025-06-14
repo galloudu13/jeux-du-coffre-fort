@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+    <title>Coffre Mystère</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: 'Arial', sans-serif;
+            background: url('background.jpg') no-repeat center center fixed;
+            background-size: cover;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+            color: white;
+            text-shadow: 2px 2px 5px black;
+        }
+        .container {
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px;
+            border-radius: 20px;
+            border: 2px solid red;
+            box-shadow: 0 0 15px red;
+            text-align: center;
+        }
+        input {
+            font-size: 2rem;
+            padding: 10px;
+            margin: 10px;
+            width: 100px;
+            text-align: center;
+        }
+        button {
+            font-size: 1.5rem;
+            padding: 10px 20px;
+            cursor: pointer;
+            background-color: red;
+            border: none;
+            border-radius: 10px;
+            color: white;
+        }
+        img {
+            max-width: 300px;
+            margin-bottom: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Ouvre le coffre avant qu'il ne soit trop tard...</h1>
+        <img id="coffre" src="coffre-ferme.png" alt="Coffre"/>
+        <div>
+            <input type="text" id="code" maxlength="4" placeholder="----" />
+            <button onclick="checkCode()">Déverrouiller</button>
+        </div>
+        <p id="message"></p>
+    </div>
+    <audio id="openSound" src="open-sound.mp3"></audio>
+    <audio id="errorSound" src="error-sound.mp3"></audio>
+    <script>
+        function checkCode() {
+            const code = document.getElementById("code").value;
+            const coffre = document.getElementById("coffre");
+            const message = document.getElementById("message");
+            if (code === "9797") {
+                coffre.src = "coffre-ouvert.png";
+                message.innerHTML = "✅ Coffre ouvert !";
+                document.getElementById("openSound").play();
+            } else {
+                message.innerHTML = "❌ Code incorrect.";
+                document.getElementById("errorSound").play();
+            }
+        }
+    </script>
+</body>
+</html>
